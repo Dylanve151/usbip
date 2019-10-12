@@ -1,0 +1,18 @@
+[Unit]
+Description=usbip host daemon
+After=network.target
+
+[Service]
+Type=forking
+
+EnvironmentFile=/home/pi/usbip-env
+
+ExecStart=/usr/sbin/usbipd -D
+ExecStartPost=/bin/sh -c "for m in $(/usr/sbin/usbip list -p -l | cut '-d#' -f1); do /usr/sbin/usbip bind --$m; done"
+ExecStop=/bin/sh -c "for m in $(/usr/sbin/usbip list -p -l | cut '-d#' -f1); do /usr/sbin/usbip bind --$m; done"
+ExecStopPost=killall usbipd
+ExecReload=/bin/sh -c "for n in unbind bind; do n=$n && for m in $(/usr/sbin/usbip list -p -l | cut '-d#' -f1); do /usr/sbin/usbip $n --$m; done; done"
+
+
+[Install]
+WantedBy=multi-user.target
