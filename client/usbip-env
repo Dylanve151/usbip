@@ -1,1 +1,2 @@
-host="USBIP SERVER IP ADDRESS"
+#change host variable to you usbip ip address or hostname
+host="USBIP SERVER"
