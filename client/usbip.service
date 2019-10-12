@@ -1,0 +1,16 @@
+[Unit]
+Description=usbip client
+After=network.target
+
+[Service]
+
+EnvironmentFile=/home/*/usbip-env
+
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/sh -c "for m in $(/usr/sbin/usbip list -p -r $host | cut '-d:' -f1 | grep '[ ].-.'); do /usr/sbin/usbip attach -r $host -b $m; done"
+ExecStartPost=/bin/sh -c "/usr/sbin/usbip port > /tmp/usbipports"
+ExecStop=/bin/sh -c "for m in $(cat /tmp/usbipports | grep '<Port in Use>' | cut '-d:' -f1 | cut '-d ' -f2); do /usr/sbin/usbip detach --port=$m; done"
+
+[Install]
+WantedBy=multi-user.target
