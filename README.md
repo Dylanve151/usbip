@@ -2,6 +2,7 @@
 playing around with usbip
 
 
+
 # server install
 
   apt-get install usbip
@@ -13,8 +14,11 @@ playing around with usbip
   
   
   sudo systemctl --system daemon-reload
+  
   sudo systemctl enable usbipd.service
+  
   sudo systemctl start usbipd.service
+  
   
   
 # client install
@@ -30,5 +34,8 @@ playing around with usbip
   
   
   sudo systemctl --system daemon-reload
+  
   sudo systemctl enable usbipd.service
+  
   sudo systemctl start usbipd.service
+  
