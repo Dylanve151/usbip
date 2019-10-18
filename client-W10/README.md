@@ -1,3 +1,3 @@
 Original: barbalion/usbip-win-client
 
-Maybe i will make a CMD or Powershell script for this or create a service.
+This doesnt seem to be working for windows 10 verywell....
