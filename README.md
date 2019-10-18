@@ -1,6 +1,8 @@
 # usbip
 playing around with usbip
 
+The server will automaticly bind all USB devices
+The client will automaticly connect to the server and mount all USB devices
 
 
 # server install
